@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "rs6Zm6mCP8o=",
+  "success": false,
+  "projectFilePath": "C:\\MyFiles\\Projects\\BekBankApplication\\backend\\src\\WebAPI\\WebApplication.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1008",
+      "level": "Error",
+      "message": "В проектах, в которых используется централизованное управление версиями пакетов, версию необходимо определять не в элементах PackageReference, а в элементе PackageVersion: Microsoft.AspNetCore.OpenApi;Swashbuckle.AspNetCore."
+    }
+  ]
+}
