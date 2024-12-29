@@ -19,7 +19,7 @@ public class AddMoneyCommand(BankAccount account,
             return result;
         }
 
-        await bankService.UpdateBalance(Account, Delta);
+        await bankService.UpdateBalance(Account);
 
         await Logger.Logging(new Log(
             Account.AccountGuid,

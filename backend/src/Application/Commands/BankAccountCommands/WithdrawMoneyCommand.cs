@@ -18,7 +18,7 @@ public class WithdrawMoneyCommand(BankAccount account, long delta, ILogger logge
             return result;
         }
 
-        await bankService.UpdateBalance(Account, Delta);
+        await bankService.UpdateBalance(Account);
 
         await Logger.Logging(new Log(
             Account.AccountGuid,

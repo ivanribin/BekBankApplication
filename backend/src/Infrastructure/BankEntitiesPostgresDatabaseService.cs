@@ -54,9 +54,9 @@ public class BankEntitiesPostgresDatabaseService(BankAccountPostgresDb bankAccDb
         await bankAccDb.AddAccountPassword(acc.AccountGuid, acc.CodedPassword);
     }
 
-    public async Task UpdateBalance(BankAccount acc, long delta)
+    public async Task UpdateBalance(BankAccount acc)
     {
-        await bankAccDb.UpdateAccountBalance(acc.AccountGuid, delta);
+        await bankAccDb.UpdateAccountBalance(acc.AccountGuid, acc.Balance);
     }
 
     public async Task AddTransactionByLog(Log log)
