@@ -1,7 +1,7 @@
 ﻿using Src.Domain.DomainModel;
 using Src.ResultType;
 
-namespace Src.Application.Commands;
+namespace Src.Commands;
 
 public class SystemAdministratorLoginCommand(string password) : ICommand<Result>
 {

@@ -1,7 +1,7 @@
 ﻿using Src.Domain.DomainModel.BankEntities;
 using Src.Infrastructure;
 
-namespace Src.Application.Commands;
+namespace Src.Commands;
 
 public class AuthenticationBankAccountCommand(long id, string password,
     BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<BankAccount?>>

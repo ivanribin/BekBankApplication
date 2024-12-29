@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
-using Src.Application.Commands;
-using Src.Application.Commands.BankAccountCommands;
+using Src.Commands;
+using Src.Commands.BankAccountCommands;
 
 namespace Src.EntitiesDI.ServiceCollectionExtensions;
 

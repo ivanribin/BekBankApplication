@@ -2,7 +2,7 @@
 using Src.Domain.DomainServices;
 using Src.Infrastructure;
 
-namespace Src.Application.Commands;
+namespace Src.Commands;
 
 public class IdentificationNewBankAccountCommand(string password,
     BankEntitiesPostgresDatabaseService bankService,

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
-using Src.Application.Commands;
+using Src.Commands;
 using Src.ResultType;
 
 namespace Src.UserInterface.ConsoleUI.Pages;

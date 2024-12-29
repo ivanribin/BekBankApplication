@@ -1,4 +1,4 @@
-﻿namespace Src.Application.Commands;
+﻿namespace Src.Commands;
 
 public interface ICommand<T>
 {

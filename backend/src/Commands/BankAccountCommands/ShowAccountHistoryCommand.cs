@@ -2,7 +2,7 @@
 using Src.Infrastructure;
 using Src.Infrastructure.Logger;
 
-namespace Src.Application.Commands.BankAccountCommands;
+namespace Src.Commands.BankAccountCommands;
 
 public class ShowAccountHistoryCommand(BankAccount account,
                                        BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<IList<IList<string>>>>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
-using Src.Application.Commands.BankAccountCommands;
+using Src.Commands.BankAccountCommands;
 
 namespace Src.UserInterface.ConsoleUI.Pages.UserActionPages;
 

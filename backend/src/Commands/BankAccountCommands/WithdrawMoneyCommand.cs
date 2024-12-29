@@ -2,17 +2,16 @@
 using Src.Infrastructure;
 using Src.Infrastructure.Logger;
 using Src.ResultType;
+using ILogger = Src.Infrastructure.Logger.ILogger;
 
-namespace Src.Application.Commands.BankAccountCommands;
+namespace Src.Commands.BankAccountCommands;
 
-public class AddMoneyCommand(BankAccount account,
-                             long delta,
-                             ILogger logger,
-                             BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<Result>>
+public class WithdrawMoneyCommand(BankAccount account, long delta, ILogger logger,
+                                  BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<Result>>
 {
     public async Task<Result> Execute()
     {
-        Result result = Account.AddMoney(Delta);
+        Result result = Account.WithdrawMoney(Delta);
 
         if (result is Result.Fail)
         {
@@ -24,9 +23,9 @@ public class AddMoneyCommand(BankAccount account,
         await Logger.Logging(new Log(
             Account.AccountGuid,
             DateTime.Now.ToString(),
-            Account.Balance - Delta,
+            Account.Balance + Delta,
             Account.Balance,
-            Delta));
+            -Delta));
 
         return result;
     }
