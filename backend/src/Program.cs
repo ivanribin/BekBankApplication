@@ -1,10 +1,6 @@
-﻿/*using Microsoft.Extensions.DependencyInjection;
-using Spectre.Console;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Src.ApplicationLaunchers;
 using Src.EntitiesDI;
-using Src.Infrastructure.DatabaseSettings;
-using Src.Infrastructure.Logger;
-using Src.UserInterface.ConsoleUI;
-using Src.UserInterface.ConsoleUI.Pages;
 
 namespace Src;
 
@@ -13,24 +9,15 @@ public class Program
     public static async Task Main()
     {
         var settings = new ServiceCollectionSettings();
+        IServiceProvider provider = settings.Provider;
 
-        PostgresDatabaseMaker dbmaker = settings.Provider.GetRequiredService<PostgresDatabaseMaker>();
-        await dbmaker.MakeDatabase();
+        ApplicationChoosePage page = provider.GetRequiredService<ApplicationChoosePage>();
+        string choice = page.Execute();
 
-        PageState state = new(settings.Provider.GetRequiredService<ILogger>(), settings);
+        settings.Setup(choice);
+        provider = settings.Provider;
 
-        var start = new RoleChoosePage();
-        IPage page = await start.Execute(state);
-
-        while (true)
-        {
-            page = await page.Execute(state);
-            AnsiConsole.Clear();
-            if (state.NeedExit)
-            {
-                break;
-            }
-        }
+        IApplicationLauncher launcher = provider.GetRequiredService<IApplicationLauncher>();
+        await launcher.Launch(settings);
     }
 }
-*/

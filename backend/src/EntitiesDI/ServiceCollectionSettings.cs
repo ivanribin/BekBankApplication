@@ -1,21 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Src.Application.Commands;
-using Src.Application.Commands.BankAccountCommands;
-using Src.Domain.DomainModel.BankEntities;
-using Src.Domain.DomainServices;
-using Src.Infrastructure;
-using Src.Infrastructure.DatabaseEntity;
-using Src.Infrastructure.DatabaseSettings;
-using Src.Infrastructure.Implementations;
-using Src.Infrastructure.Logger;
-using Src.UserInterface.ConsoleUI.Pages;
-using Src.UserInterface.ConsoleUI.Pages.UserActionPages;
+using Src.ApplicationLaunchers;
+using Src.EntitiesDI.ServiceCollectionExtensions;
+using Src.EntitiesDI.ServiceCollectionSetups;
 
 namespace Src.EntitiesDI;
 
 public class ServiceCollectionSettings
 {
-    public IServiceProvider Provider { get; init; }
+    public IServiceProvider Provider { get; private set; }
 
     private ServiceCollection Service { get; init; }
 
@@ -23,40 +15,28 @@ public class ServiceCollectionSettings
     {
         Service = [];
 
-        Service.AddScoped<BalanceOperationsService>();
-        Service.AddScoped<AccountService>();
+        Service.AddBankServicesAndEntities();
 
-        Service.AddScoped<PostgresDatabaseEraser>();
-        Service.AddScoped<PostgresDatabaseMaker>();
+        Service.AddCommands();
 
-        Service.AddScoped<BankDbPostgresConnection>();
+        Service.AddScoped<ApplicationChoosePage>();
 
-        Service.AddScoped<BankAccountPostgresDb>();
+        Provider = Service.BuildServiceProvider();
+    }
 
-        Service.AddScoped<BankEntitiesPostgresDatabaseService>();
-
-        Service.AddScoped<RoleChoosePage>();
-        Service.AddScoped<SystemAdministratorLoginPage>();
-        Service.AddScoped<SystemAdministratorPage>();
-        Service.AddScoped<UserActionChoosePage>();
-        Service.AddScoped<CreateAccountPage>();
-        Service.AddScoped<AccountLoginPage>();
-        Service.AddScoped<UserPage>();
-        Service.AddScoped<AddMoneyPage>();
-        Service.AddScoped<WithdrawMoneyPage>();
-        Service.AddScoped<ShowBalancePage>();
-        Service.AddScoped<ShowAccountHistoryPage>();
-
-        Service.AddScoped<AddMoneyCommand>();
-        Service.AddScoped<WithdrawMoneyCommand>();
-        Service.AddScoped<ShowAccountHistoryCommand>();
-        Service.AddScoped<AuthenticationBankAccountCommand>();
-        Service.AddScoped<IdentificationNewBankAccountCommand>();
-        Service.AddScoped<SystemAdministratorLoginCommand>();
-
-        Service.AddScoped<ILogger, PostgresLogger>();
-
-        Service.AddScoped<BankAccount>();
+    public void Setup(string appType)
+    {
+        switch (appType)
+        {
+            case "Web Application":
+                Service.WebAppPostgresSetup();
+                break;
+            case "Console":
+                Service.ConsolePostgresSetup();
+                break;
+            default:
+                throw new ArgumentException("Wrong application type");
+        }
 
         Provider = Service.BuildServiceProvider();
     }

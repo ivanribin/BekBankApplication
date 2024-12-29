@@ -3,7 +3,7 @@
     <PropertyGroup>
         <RootNamespace>Src</RootNamespace>
         <OutputType>Exe</OutputType>
-        <NoWarn>CA2007, CA2227</NoWarn>
+        <NoWarn>CA2007, CA2227, SA1116</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

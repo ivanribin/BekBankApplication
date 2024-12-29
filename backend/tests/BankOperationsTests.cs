@@ -2,7 +2,7 @@
 using Src.ResultType;
 using Xunit;
 
-namespace Lab5.Tests;
+namespace BankBack.Tests;
 
 public class BankOperationsTests
 {
