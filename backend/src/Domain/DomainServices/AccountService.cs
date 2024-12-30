@@ -2,19 +2,13 @@
 
 namespace Src.Domain.DomainServices;
 
-public class AccountService
+public class AccountService(IBankAccountGuidProvider guidProvider)
 {
-    public BankAccount? MakeNewAccount(string password)
+    public async Task<BankAccount?> MakeNewAccount(string password)
     {
-        long accGuid = GuidProvider.GenerateGuid();
+        long accGuid = await guidProvider.GenerateGuid();
 
-        if (accGuid < DomainConstants.MinGuid || accGuid > DomainConstants.MaxGuid)
-        {
-            return null;
-        }
-
-        return new BankAccount(accGuid, password);
+        return accGuid < DomainConstants.MinGuid || accGuid > DomainConstants.MaxGuid ?
+            null : new BankAccount(accGuid, password);
     }
-
-    private BankGuidProvider GuidProvider { get; init; } = new();
 }

@@ -15,5 +15,6 @@ public static class ConsoleSetups
 
         collection.AddPostgresDatabase();
         collection.AddPostgresLogger();
+        collection.AddPostgresGuidProvider();
     }
 }

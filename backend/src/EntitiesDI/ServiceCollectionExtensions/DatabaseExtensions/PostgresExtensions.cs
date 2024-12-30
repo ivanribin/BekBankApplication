@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Src.Domain.DomainModel.BankEntities;
 using Src.Infrastructure;
 using Src.Infrastructure.DatabaseEntity;
 using Src.Infrastructure.DatabaseSettings;
@@ -24,5 +25,10 @@ public static class PostgresExtensions
     public static void AddPostgresLogger(this IServiceCollection collection)
     {
         collection.AddScoped<ILogger, PostgresLogger>();
+    }
+
+    public static void AddPostgresGuidProvider(this IServiceCollection collection)
+    {
+        collection.AddScoped<IBankAccountGuidProvider, PostgresGuidProvider>();
     }
 }

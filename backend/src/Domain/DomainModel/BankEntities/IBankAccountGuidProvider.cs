@@ -2,5 +2,5 @@
 
 public interface IBankAccountGuidProvider
 {
-    long GenerateGuid();
+    Task<long> GenerateGuid();
 }

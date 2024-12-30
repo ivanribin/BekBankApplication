@@ -12,5 +12,6 @@ public static class WebApplicationSetup
 
         collection.AddPostgresDatabase();
         collection.AddPostgresLogger();
+        collection.AddPostgresGuidProvider();
     }
 }

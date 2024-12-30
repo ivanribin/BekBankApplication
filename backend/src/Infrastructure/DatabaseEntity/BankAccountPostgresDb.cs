@@ -90,4 +90,13 @@ public class BankAccountPostgresDb(BankDbPostgresConnection connection) : IBankD
 
         await command.ExecuteReaderAsync();
     }
+
+    public async Task<long?> GetNewId()
+    {
+        string commandString = "select max(accountid) + 1 from accountbalance";
+
+        var command = new NpgsqlCommand(commandString, await connection.GetOpeningConnection());
+
+        return await command.ExecuteScalarAsync() as long?;
+    }
 }

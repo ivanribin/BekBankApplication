@@ -1,4 +1,5 @@
-﻿using Src.Domain.DomainModel.BankEntities;
+﻿using Src.Domain;
+using Src.Domain.DomainModel.BankEntities;
 using Src.Infrastructure.DatabaseEntity;
 using Src.Infrastructure.Logger;
 
@@ -67,5 +68,10 @@ public class BankEntitiesPostgresDatabaseService(BankAccountPostgresDb bankAccDb
             log.BalanceBeforeOperation,
             log.BalanceAfterOperation,
             log.Delta);
+    }
+
+    public async Task<long> GetNewId()
+    {
+        return await bankAccDb.GetNewId() ?? DomainConstants.MinGuid;
     }
 }

@@ -10,7 +10,7 @@ public class IdentificationNewBankAccountCommand(string password,
 {
     public async Task<BankAccount?> Execute()
     {
-        Domain.DomainModel.BankEntities.BankAccount? result = accountService.MakeNewAccount(Password);
+        Domain.DomainModel.BankEntities.BankAccount? result = await accountService.MakeNewAccount(Password);
 
         if (result is null)
         {
