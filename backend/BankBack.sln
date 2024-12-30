@@ -1,13 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{3A8B6812-B42A-4F1B-962F-E4C2696A6F46}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ABD7D257-AE9C-4DCB-9224-80938748474C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankBack", "Src\BankBack.csproj", "{C1229BD4-48C1-4234-973D-EB0EEBC08771}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebApplication.csproj", "{6B113055-EABD-4475-9A6B-C54320ED1F26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{3DB12F6C-143E-4086-BCB2-2EC3461BC353}"
 	ProjectSection(SolutionItems) = preProject

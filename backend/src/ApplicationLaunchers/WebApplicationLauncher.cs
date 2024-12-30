@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Src.EntitiesDI;
-using Src.WebAPI.Controllers;
 
 namespace Src.ApplicationLaunchers;
 
@@ -35,15 +34,6 @@ public class WebApplicationLauncher : IApplicationLauncher
         }
 
         app.UseHttpsRedirection();
-
-        app.MapGet("/admin/authentication/{password}",
-                (string password) =>
-                {
-                    AuthenticationController controller = new();
-                    return controller.ReceivePassword(password);
-                })
-            .AllowAnonymous()
-            .WithOpenApi();
 
         app.MapGet("/admin/authentication/password={password}&&name={name}",
                 (string password, string name) =>
