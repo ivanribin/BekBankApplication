@@ -14,7 +14,7 @@ public static class PagesWindows
                 ]));
     }
 
-    public static string TryAgainOrReturnWindow(string message = "")
+    public static string TryAgainOrReturnWindow(string message = "Fail operation")
     {
         return AnsiConsole.Prompt(
             new SelectionPrompt<string>()

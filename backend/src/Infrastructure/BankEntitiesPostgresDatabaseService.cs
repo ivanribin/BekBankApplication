@@ -30,9 +30,9 @@ public class BankEntitiesPostgresDatabaseService(BankAccountPostgresDb bankAccDb
         return password;
     }
 
-    public async Task<IList<Log>> GetTransactionHistory(BankAccount acc)
+    public async Task<IList<Log>> GetTransactionHistory(long id)
     {
-        Npgsql.NpgsqlDataReader reader = await bankAccDb.GetTransactionHistoryById(acc.AccountGuid);
+        Npgsql.NpgsqlDataReader reader = await bankAccDb.GetTransactionHistoryById(id);
 
         IList<Log> result = [];
 
@@ -49,10 +49,10 @@ public class BankEntitiesPostgresDatabaseService(BankAccountPostgresDb bankAccDb
         return result;
     }
 
-    public async Task MakeAccount(BankAccount acc)
+    public async Task MakeAccount(BankAccount acc, string password)
     {
         await bankAccDb.AddAccountBalance(acc.AccountGuid, 0);
-        await bankAccDb.AddAccountPassword(acc.AccountGuid, acc.CodedPassword);
+        await bankAccDb.AddAccountPassword(acc.AccountGuid, password);
     }
 
     public async Task UpdateBalance(BankAccount acc)

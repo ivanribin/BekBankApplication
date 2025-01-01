@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Src.Domain.DomainModel.BankEntities;
 using Src.Domain.DomainServices;
 
 namespace Src.EntitiesDI.ServiceCollectionExtensions;
@@ -11,6 +10,6 @@ public static class BankServiceExtension
         collection.AddScoped<BalanceOperationsService>();
         collection.AddScoped<AccountService>();
 
-        collection.AddScoped<BankAccount>();
+        // collection.AddScoped<BankAccount>();
     }
 }

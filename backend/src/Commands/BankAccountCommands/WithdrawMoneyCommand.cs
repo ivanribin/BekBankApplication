@@ -6,33 +6,38 @@ using ILogger = Src.Infrastructure.Logger.ILogger;
 
 namespace Src.Commands.BankAccountCommands;
 
-public class WithdrawMoneyCommand(BankAccount account, long delta, ILogger logger,
-                                  BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<Result>>
+public class WithdrawMoneyCommand(long id, long delta, ILogger logger,
+                                  BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<BankOperationAnswer>>
 {
-    public async Task<Result> Execute()
+    public async Task<BankOperationAnswer> Execute()
     {
-        Result result = Account.WithdrawMoney(Delta);
+        long? balance = await bankService.GetBalance(id);
+
+        if (balance is null)
+        {
+            return new BankOperationAnswer(false, new Result.Fail("Error with database or account doesn't exist"));
+        }
+
+        BankAccount account = new(id, balance.Value);
+
+        Result result = account.WithdrawMoney(delta);
 
         if (result is Result.Fail)
         {
-            return result;
+            return new BankOperationAnswer(false, result, account);
         }
 
-        await bankService.UpdateBalance(Account);
+        await bankService.UpdateBalance(account);
 
-        await Logger.Logging(new Log(
-            Account.AccountGuid,
-            DateTime.Now.ToString(),
-            Account.Balance + Delta,
-            Account.Balance,
-            -Delta));
+        var newLog = new Log(
+            account.AccountGuid,
+            DateTime.Now,
+            balance.Value,
+            account.Balance,
+            -delta);
 
-        return result;
+        await logger.Logging(newLog);
+
+        return new BankOperationAnswer(true, result, account, newLog);
     }
-
-    private BankAccount Account { get; init; } = account;
-
-    private long Delta { get; init; } = delta;
-
-    private ILogger Logger { get; init; } = logger;
 }

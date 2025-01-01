@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 using Src.Commands.BankAccountCommands;
-using Src.ResultType;
 
 namespace Src.UserInterface.ConsoleUI.Pages.UserActionPages;
 
@@ -38,18 +37,18 @@ public class WithdrawMoneyPage : IPage
         }
 
         WithdrawMoneyCommand curCommand =
-            ActivatorUtilities.CreateInstance<WithdrawMoneyCommand>(provider, state.Account, delta);
+            ActivatorUtilities.CreateInstance<WithdrawMoneyCommand>(provider, state.Account.AccountGuid, delta);
 
-        Result result = await curCommand.Execute();
+        BankOperationAnswer result = await curCommand.Execute();
 
-        if (result is Result.Fail)
+        if (!result.IsSuccess)
         {
-            string choice = PagesWindows.TryAgainOrReturnWindow(result.ResultMessage);
+            string choice = PagesWindows.TryAgainOrReturnWindow(result.Result.ResultMessage);
             return choice == "Try again" ? this
                 : provider.GetRequiredService<UserPage>();
         }
 
-        PagesWindows.ContinueWindow($"Now balance is {state.Account.Balance}");
+        PagesWindows.ContinueWindow(result.Result.ResultMessage);
         return provider.GetRequiredService<UserPage>();
     }
 }

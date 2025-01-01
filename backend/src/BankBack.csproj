@@ -3,7 +3,7 @@
     <PropertyGroup>
         <RootNamespace>Src</RootNamespace>
         <OutputType>Exe</OutputType>
-        <NoWarn>CA2007, CA2227, SA1116</NoWarn>
+        <NoWarn>CA2007, CA2227, SA1116, IDE0008</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,7 +23,6 @@
 
     <ItemGroup>
       <Folder Include="obj\" />
-      <Folder Include="WebAPI\Endpoints\UserEndpoints\" />
     </ItemGroup>
 
 </Project>

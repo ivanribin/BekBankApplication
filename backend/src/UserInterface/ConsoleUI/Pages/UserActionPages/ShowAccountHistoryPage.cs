@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 using Src.Commands.BankAccountCommands;
+using Src.Infrastructure.Logger;
 
 namespace Src.UserInterface.ConsoleUI.Pages.UserActionPages;
 
@@ -15,23 +16,28 @@ public class ShowAccountHistoryPage : IPage
         }
 
         ShowAccountHistoryCommand curCommand =
-            ActivatorUtilities.CreateInstance<ShowAccountHistoryCommand>(state.Provider, state.Account);
+            ActivatorUtilities.CreateInstance<ShowAccountHistoryCommand>(state.Provider, state.Account.AccountGuid);
 
-        IList<IList<string>> result = await curCommand.Execute();
+        var result = await curCommand.Execute();
 
         var table = new Table();
 
         table.AddColumns("ID", "Datetime", "Balance before", "Balance after", "Delta", "Type");
 
-        foreach (IList<string> s in result)
+        foreach (Log s in result)
         {
             string type = "Add";
-            if (s[4][0] == '-')
+            if (s.Delta < 0)
             {
                 type = "Withdraw";
             }
 
-            table.AddRow(s[0], s[1], s[2], s[3], s[4], type);
+            table.AddRow(s.AccountId.ToString(),
+                         s.Datetime,
+                         s.BalanceBeforeOperation.ToString(),
+                         s.BalanceAfterOperation.ToString(),
+                         s.Delta.ToString(),
+                         type);
         }
 
         AnsiConsole.Write(table);

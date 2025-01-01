@@ -1,29 +1,13 @@
-﻿using Src.Domain.DomainModel.BankEntities;
-using Src.Infrastructure;
+﻿using Src.Infrastructure;
 using Src.Infrastructure.Logger;
 
 namespace Src.Commands.BankAccountCommands;
 
-public class ShowAccountHistoryCommand(BankAccount account,
-                                       BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<IList<IList<string>>>>
+public class ShowAccountHistoryCommand(long id,
+                                       BankEntitiesPostgresDatabaseService bankService) : ICommand<Task<IList<Log>>>
 {
-    public async Task<IList<IList<string>>> Execute()
+    public async Task<IList<Log>> Execute()
     {
-        IList<Log> serviceAnswer = await bankService.GetTransactionHistory(Account);
-
-        IList<IList<string>> result = [];
-
-        foreach (Log log in serviceAnswer)
-        {
-            result.Add([log.AccountId.ToString(),
-                       log.Datetime,
-                       log.BalanceBeforeOperation.ToString(),
-                       log.BalanceAfterOperation.ToString(),
-                       log.Delta.ToString()]);
-        }
-
-        return result;
+        return await bankService.GetTransactionHistory(id);
     }
-
-    private BankAccount Account { get; init; } = account;
 }

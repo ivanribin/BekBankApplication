@@ -2,15 +2,8 @@
 
 namespace Src.Domain.DomainModel.BankEntities;
 
-public class BankAccount
+public class BankAccount(long accountGuid, long balance = 0)
 {
-    public BankAccount(long accountGuid, string codedPassword, long balance = 0)
-    {
-        AccountGuid = accountGuid;
-        CodedPassword = codedPassword;
-        Balance = balance >= 0 ? balance : throw new ArgumentException("Balance must be not negative");
-    }
-
     public Result AddMoney(long delta)
     {
         if (delta <= 0)
@@ -33,12 +26,10 @@ public class BankAccount
             return new Result.Fail("Not enough money");
 
         Balance -= delta;
-        return new Result.Success();
+        return new Result.Success($"Now balance is {Balance}");
     }
 
-    public long AccountGuid { get; init; }
+    public long AccountGuid { get; init; } = accountGuid;
 
-    public string CodedPassword { get; init; }
-
-    public long Balance { get; private set; } = 0;
+    public long Balance { get; private set; } = balance >= 0 ? balance : throw new ArgumentException("Balance must be not negative");
 }

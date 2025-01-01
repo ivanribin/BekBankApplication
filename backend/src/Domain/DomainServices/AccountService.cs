@@ -8,7 +8,9 @@ public class AccountService(IBankAccountGuidProvider guidProvider)
     {
         long accGuid = await guidProvider.GenerateGuid();
 
-        return accGuid < DomainConstants.MinGuid || accGuid > DomainConstants.MaxGuid ?
-            null : new BankAccount(accGuid, password);
+        return accGuid < DomainConstants.MinGuid || accGuid > DomainConstants.MaxGuid ||
+            password.Length < DomainConstants.MinPasswordLength ||
+            password.Length > DomainConstants.MaxPasswordLength ?
+            null : new BankAccount(accGuid);
     }
 }

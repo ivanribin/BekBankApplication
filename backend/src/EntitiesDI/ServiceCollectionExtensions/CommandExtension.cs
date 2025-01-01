@@ -10,6 +10,7 @@ public static class CommandExtension
     {
         collection.AddScoped<AddMoneyCommand>();
         collection.AddScoped<WithdrawMoneyCommand>();
+        collection.AddScoped<ShowBalanceCommand>();
         collection.AddScoped<ShowAccountHistoryCommand>();
         collection.AddScoped<AuthenticationBankAccountCommand>();
         collection.AddScoped<IdentificationNewBankAccountCommand>();

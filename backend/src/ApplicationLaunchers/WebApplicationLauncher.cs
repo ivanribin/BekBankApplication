@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Src.EntitiesDI;
+using Src.WebAPI.Endpoints;
 
 namespace Src.ApplicationLaunchers;
 
@@ -27,21 +27,12 @@ public class WebApplicationLauncher : IApplicationLauncher
 
         WebApplication app = builder.Build();
 
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         app.UseHttpsRedirection();
 
-        app.MapGet("/admin/authentication/password={password}&&name={name}",
-                (string password, string name) =>
-                {
-                    return name == "Azim" && password == "postgres";
-                })
-            .AllowAnonymous()
-            .WithOpenApi();
+        app.AddEndpoints(settings);
 
         app.UseCors("MyPolicy");
         await app.RunAsync();

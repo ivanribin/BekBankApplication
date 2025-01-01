@@ -13,6 +13,15 @@ public record Log
         Delta = delta;
     }
 
+    public Log(long id, DateTime datetime, long balanceBefore, long balanceAfter, long delta)
+    {
+        AccountId = id;
+        Datetime = datetime.ToString();
+        BalanceBeforeOperation = balanceBefore;
+        BalanceAfterOperation = balanceAfter;
+        Delta = delta;
+    }
+
     public Log(BankAccount acc, long delta, bool isAfterOperation)
     {
         AccountId = acc.AccountGuid;

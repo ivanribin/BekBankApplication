@@ -10,14 +10,14 @@ public class IdentificationNewBankAccountCommand(string password,
 {
     public async Task<BankAccount?> Execute()
     {
-        Domain.DomainModel.BankEntities.BankAccount? result = await accountService.MakeNewAccount(Password);
+        BankAccount? result = await accountService.MakeNewAccount(Password);
 
         if (result is null)
         {
             return null;
         }
 
-        await bankService.MakeAccount(result);
+        await bankService.MakeAccount(result, Password);
 
         return result;
     }

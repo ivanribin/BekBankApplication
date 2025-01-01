@@ -18,12 +18,8 @@ public class AuthenticationBankAccountCommand(long id, string password,
         long? balance = await bankService.GetBalance(Id);
         string? dbpassword = await bankService.GetPassword(Id);
 
-        if (balance is null || dbpassword != Password)
-        {
-            return null;
-        }
-
-        return new BankAccount(Id, Password, balance.Value);
+        return balance is null || dbpassword != Password ? null
+            : new BankAccount(Id, balance.Value);
     }
 
     private long Id { get; init; } = id;

@@ -7,7 +7,7 @@ public class BankAccountPostgresDb(BankDbPostgresConnection connection) : IBankD
 {
     public async Task<long?> GetAccount(long id)
     {
-        string commandString = "select * from accountbalance where accountid = @id";
+        string commandString = "select accountid from accountbalance where accountid = @id";
 
         var command = new NpgsqlCommand(commandString, await connection.GetOpeningConnection());
         command.Parameters.AddWithValue("@id", id);
@@ -17,7 +17,7 @@ public class BankAccountPostgresDb(BankDbPostgresConnection connection) : IBankD
 
     public async Task<long?> GetBalanceForAccountById(long id)
     {
-        string commandString = "select Balance from AccountBalance where accountid = @id";
+        string commandString = "select balance from AccountBalance where accountid = @id";
         var command = new NpgsqlCommand(commandString, await connection.GetOpeningConnection());
         command.Parameters.AddWithValue("@id", id);
 

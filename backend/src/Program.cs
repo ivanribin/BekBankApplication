@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Src.ApplicationLaunchers;
 using Src.EntitiesDI;
+using Src.Infrastructure.DatabaseSettings;
 
 namespace Src;
 
@@ -16,6 +17,9 @@ public class Program
 
         settings.Setup(choice);
         provider = settings.Provider;
+
+        PostgresDatabaseMaker dbmaker = settings.Provider.GetRequiredService<PostgresDatabaseMaker>();
+        await dbmaker.MakeDatabase();
 
         IApplicationLauncher launcher = provider.GetRequiredService<IApplicationLauncher>();
         await launcher.Launch(settings);

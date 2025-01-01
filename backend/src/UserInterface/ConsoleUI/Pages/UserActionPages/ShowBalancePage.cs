@@ -1,21 +1,25 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Src.Commands.BankAccountCommands;
 
 namespace Src.UserInterface.ConsoleUI.Pages.UserActionPages;
 
 public class ShowBalancePage : IPage
 {
-    public Task<IPage> Execute(PageState state)
+    public async Task<IPage> Execute(PageState state)
     {
         if (state.Account is null)
         {
             PagesWindows.ContinueWindow("[Red]Error.[/] Account is null!");
-            return Task.FromResult<IPage>(
-                state.Provider.GetRequiredService<RoleChoosePage>());
+            return state.Provider.GetRequiredService<RoleChoosePage>();
         }
 
-        PagesWindows.ContinueWindow($"Balance is {state.Account.Balance}");
+        ShowBalanceCommand curCommand =
+            ActivatorUtilities.CreateInstance<ShowBalanceCommand>(state.Provider, state.Account.AccountGuid);
 
-        return Task.FromResult<IPage>(
-            state.Provider.GetRequiredService<UserPage>());
+        long? balance = await curCommand.Execute();
+
+        PagesWindows.ContinueWindow($"Balance is {balance}");
+
+        return state.Provider.GetRequiredService<UserPage>();
     }
 }
