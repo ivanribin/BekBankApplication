@@ -1,0 +1,16 @@
+.show-password-button {
+    font-weight: 300;
+}
+
+.show-password-button:hover {
+    cursor: pointer;
+}
+
+.password-input-field {
+    font-size: 2vw;
+    margin-bottom: 2vh;
+}
+
+.authentication-button {
+    width: 10vw;
+}

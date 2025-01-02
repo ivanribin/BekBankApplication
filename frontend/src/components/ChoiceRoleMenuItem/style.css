@@ -1,0 +1,23 @@
+.choice-role-menu-item-container {
+    color: rgb(0, 0, 0);
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10vh;
+    align-items: center;
+    background-color: rgb(255, 252, 252);
+    border-radius: 8%;
+    transition: 1s;
+    padding: 4vw;
+}
+
+.choice-role-menu-item-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.choice-role-menu-item-container img {
+    width: 70%;
+}

@@ -1,20 +1,29 @@
 import { type ReactElement } from "react";
-import AdminAuthorizationPage from "../pages/AdminAuthorization";
+import AdminAuthenticationPage from "../pages/AdminAuthentication";
 import CheckHistoryPage from "../pages/CheckHistory";
-import CheckInfoPage from "../pages/CheckInfo";
-import CheckRedactorPage from "../pages/CheckRedactor";
-import ChecksListPage from "../pages/ChecksList";
+import CheckPage from "../pages/Check";
 import ChoiceRolePage from "../pages/ChoiceRole";
-import LoginCheckPage from "../pages/LoginCheck";
+import AdminCheckChoicePage from "../pages/AdminCheckChoice";
+import CheckInspectPage from "../pages/CheckInspect";
+import UserMenuPage from "../pages/UserMenu";
+import UserSignInPage from "../pages/UserSignIn";
+import UserSignUpPage from "../pages/UserSignUp";
+import CheckTopUpPage from "../pages/CheckTopUp";
+import CheckTakeOffPage from "../pages/CheckTakeOff";
 
 export const enum ApplicationsPaths {
     CHOICEROLE = "/",
-    ADMINAUTHORIZATION = "/admin/authorization",
-    CHECKHISTORY = "/check/history",
-    CHECKINFO = "/check/info",
-    CHECKREDACTOR = "/check/redactor",
-    CHECKSLIST = "/checks-list",
-    LOGINCHECK = "/check/login",
+    ADMINAUTHENTICATION = "/admin/authentication",
+    CHECKHISTORY = "user/check/history",
+    CHECKFULL = "/user/check/:checkNumber",
+    CHECK = "/user/check",
+    ADMINCHECKCHOICE = "/admin/check/choice",
+    CHECKINSPECT = "/admin/check/inspect",
+    USERMENU = "/user",
+    USERSIGNIN = "/user/sign-in",
+    USERSIGNUP = "/user/sign-up",
+    CHECKTOPUP = "/user/check/:checkNumber/top-up",
+    CHECKTAKEOFF = "/user/check/:checkNumber/take-off",
 }
 
 export interface IApplicationRoute {
@@ -30,9 +39,9 @@ const applicationRoutes: IApplicationRoute[] = [
         element: <ChoiceRolePage />,
     },
     {
-        id: "adminAuthorization",
-        path: ApplicationsPaths.ADMINAUTHORIZATION,
-        element: <AdminAuthorizationPage />,
+        id: "adminAuthentication",
+        path: ApplicationsPaths.ADMINAUTHENTICATION,
+        element: <AdminAuthenticationPage />,
     },
     {
         id: "checkHistory",
@@ -41,23 +50,43 @@ const applicationRoutes: IApplicationRoute[] = [
     },
     {
         id: "checkInfo",
-        path: ApplicationsPaths.CHECKINFO,
-        element: <CheckInfoPage />,
+        path: ApplicationsPaths.CHECKFULL,
+        element: <CheckPage />,
     },
     {
-        id: "checkRedactor",
-        path: ApplicationsPaths.CHECKREDACTOR,
-        element: <CheckRedactorPage />,
+        id: "adminCheckChoice",
+        path: ApplicationsPaths.ADMINCHECKCHOICE,
+        element: <AdminCheckChoicePage />,
     },
     {
-        id: "checksList",
-        path: ApplicationsPaths.CHECKSLIST,
-        element: <ChecksListPage />,
+        id: "checkInspect",
+        path: ApplicationsPaths.CHECKINSPECT,
+        element: <CheckInspectPage />,
     },
     {
-        id: "loginCheck",
-        path: ApplicationsPaths.LOGINCHECK,
-        element: <LoginCheckPage />,
+        id: "userMenu",
+        path: ApplicationsPaths.USERMENU,
+        element: <UserMenuPage />,
+    },
+    {
+        id: "userSignIn",
+        path: ApplicationsPaths.USERSIGNIN,
+        element: <UserSignInPage />,
+    },
+    {
+        id: "userSignUp",
+        path: ApplicationsPaths.USERSIGNUP,
+        element: <UserSignUpPage />,
+    },
+    {
+        id: "checkTopUp",
+        path: ApplicationsPaths.CHECKTOPUP,
+        element: <CheckTopUpPage />,
+    },
+    {
+        id: "checkTakeOff",
+        path: ApplicationsPaths.CHECKTAKEOFF,
+        element: <CheckTakeOffPage />,
     },
 ];
 

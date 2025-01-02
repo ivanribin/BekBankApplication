@@ -1,0 +1,9 @@
+.choice-role-menu-container {
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10vw;
+    align-items: center;
+}

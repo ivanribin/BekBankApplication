@@ -1,0 +1,58 @@
+.check-number-container {
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    background-color: rgb(172, 147, 7);
+    border-radius: 5%;
+    box-shadow: 0 3vh 10vh rgb(143, 137, 137), 0 2vh 2vh rgb(224, 197, 40), inset 5vw 0 20vh rgb(240, 230, 176);
+}
+
+.apple-pay-icon-container {
+    width: 10%;
+    position: absolute;
+    right: 2%;
+    top: 0vw;
+}
+
+.apple-pay-icon-container img {
+    width: 100%;
+}
+
+.visa-text-container {
+    width: 10%;
+    position: absolute;
+    bottom: 0vw;
+    right: 2%;
+}
+
+.visa-text-container img {
+    width: 100%;
+}
+
+.check-cart-bank-logo-container {
+    width: 10%;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+}
+
+.check-cart-bank-logo-container img{
+    width: 100%;
+}
+
+.check-cart-number-container {
+    width: 70%;
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    font-size: 2vw;
+}
+
+.show-all-number-button {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.5vw;
+}

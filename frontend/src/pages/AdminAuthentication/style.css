@@ -1,0 +1,48 @@
+.admin-authentication-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sending-admin-authentication-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 2%;
+    padding: 2vh 3vw 2vh 3vw;
+    transition: 1s;
+}
+
+.fail-admin-authentication-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 2%;
+    padding: 2vh 3vw 2vh 3vw;
+    transition: 1s;
+    box-shadow: 0px 0px 100px rgb(176, 53, 53);
+}
+
+.success-admin-authentication-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 2%;
+    padding: 2vh 3vw 2vh 3vw;
+    transition: 1s;
+    box-shadow: 0px 0px 100px rgb(39, 145, 44);
+}
+
+.authentication-message {
+    font-size: 3vw;
+    margin-bottom: 2vh;
+    color: rgb(77, 75, 75);
+}
+

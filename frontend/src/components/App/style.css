@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'FontMain';
+    src: url(/public/assets/fonts/main.ttf);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    /* overflow: hidden; */
+    font-family: 'FontMain', sans-serif;
+    font-weight: 600; 
+    transition: background 0.5s ease; 
+    color: black;
+}
+
+body {
+    background: linear-gradient(135deg, #8B7ECE, #75D577);
+
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.page-header {
+    font-family: 'FontMain';
+    font-size: 3vw;
+    font-weight: 800;
+}

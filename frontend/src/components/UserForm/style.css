@@ -1,0 +1,59 @@
+.password-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-input-field {
+    font-size: 2vw;
+    border: none;
+}
+
+.password-input-field {
+    font-size: 2vw;
+
+    border: none;
+
+}
+
+.repeat-password-input-field {
+    font-size: 2vw;
+
+    border: none;
+
+}
+
+.show-password-button {
+    font-size: 2vw;
+    font-weight: 400;
+    user-select: none;
+}
+
+.show-password-button:hover {
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.sending-button {
+    padding: 10px 30px;
+    border: 3px solid black;
+    background-color: white;
+    font-size: 3vw;
+    border-radius: 10%;
+    user-select: none;
+    transition: 1s;
+}
+
+.sending-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: rgb(39, 154, 118);
+}
+
+
+
+
+
+

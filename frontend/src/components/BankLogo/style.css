@@ -1,0 +1,25 @@
+.bank-logo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0;
+    margin: 120px 0 50px 0;
+    transition: 1s;
+}
+
+.bank-logo-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.bank-logo-container img{
+    width: 5vw;
+}
+
+.bank-logo-name {
+    font-weight: bold;
+    font-size: 3vw;
+    color: white;
+}

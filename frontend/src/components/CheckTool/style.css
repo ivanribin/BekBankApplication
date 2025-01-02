@@ -1,0 +1,21 @@
+.check-tool-container {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8%;
+    background-color: rgb(240, 230, 230);
+    box-shadow: 0 0 1vw rgb(134, 130, 130);
+    transition: 1s;
+}
+
+.check-tool-container img {
+    width: 75px;
+}
+
+.check-tool-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

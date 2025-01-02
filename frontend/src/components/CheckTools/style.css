@@ -1,0 +1,10 @@
+.check-tools-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: 1s;
+    bottom: 200px;
+}

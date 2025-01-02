@@ -1,0 +1,16 @@
+.user-menu-button {
+    width: 300px;
+    height: 150px;
+    background-color: white;
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    transition: 1s;
+}
+
+.user-menu-button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

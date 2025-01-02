@@ -1,0 +1,7 @@
+.check-info-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #8B7ECE, #75D577);
+}
