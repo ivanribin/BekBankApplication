@@ -30,7 +30,7 @@ const CheckPage = (): ReactElement => {
 
             const checkBalance: number = await getCheckBalanceByNumber(checkNumber);
 
-            if (!checkBalance) {
+            if (checkBalance === null) {
                 console.log("FAIL GET BALANCE");
             }
 

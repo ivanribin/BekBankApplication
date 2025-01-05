@@ -24,7 +24,7 @@ const AdminCheckChoicePage = (): ReactElement => {
                 currentCheckNumber
             );
 
-            if (!checkBalance) {
+            if (checkBalance === null) {
                 setChoiceStatus("fail");
                 return;
             }

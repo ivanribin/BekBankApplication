@@ -41,7 +41,7 @@ const CheckTakeOffPage = (): ReactElement => {
 
             const checkData: number = await getCheckBalanceByNumber(checkNumber);
 
-            if (!checkData) {
+            if (checkData === null) {
                 console.log("FAIL GET BALANCE");
                 return;
             }

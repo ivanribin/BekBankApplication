@@ -177,12 +177,6 @@ const UserForm = ({
                 <></>
             )}
 
-            <div className="show-password-button" onClick={toggleShowPassword}>
-                {showPassword
-                    ? userFormTextLines.HIDEPASSWORD
-                    : userFormTextLines.SHOWPASSWORD}
-            </div>
-
             <div className={sendingButtonStyle} onClick={checkSendAvailable}>
                 {buttonText}
             </div>
