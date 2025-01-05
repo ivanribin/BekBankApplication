@@ -11,7 +11,7 @@ public class NewBankAccountIdentificationEndpointAdder : IEndpointsAdder
 {
     public void AddEndpoint(WebApplication app, ServiceCollectionSettings settings)
     {
-        app.MapGet("/bankAccount/identification/{password}",
+        app.MapPost("/bankAccount/identification/{password}",
                 async (string password) =>
                 {
                     IdentificationNewBankAccountCommand curCommand =
