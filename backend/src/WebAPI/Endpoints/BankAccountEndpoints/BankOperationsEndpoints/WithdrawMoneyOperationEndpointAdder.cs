@@ -11,7 +11,7 @@ public class WithdrawMoneyOperationEndpointAdder : IEndpointsAdder
 {
     public void AddEndpoint(WebApplication app, ServiceCollectionSettings settings)
     {
-        app.MapGet("/bankAccount/withdrawMoney/{id:long}/{delta:long}",
+        app.MapPost("/bankAccount/withdrawMoney/{id:long}/{delta:long}",
                 async (long id, long delta) =>
                 {
                     BankAccount account = new(id);

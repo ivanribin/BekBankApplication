@@ -10,7 +10,7 @@ public class AddMoneyOperationEndpointAdder : IEndpointsAdder
 {
     public void AddEndpoint(WebApplication app, ServiceCollectionSettings settings)
     {
-        app.MapGet("/bankAccount/addMoney/{id:long}/{delta:long}",
+        app.MapPost("/bankAccount/addMoney/{id:long}/{delta:long}",
                 async (long id, long delta) =>
                 {
                     AddMoneyCommand curCommand =
