@@ -1,4 +1,4 @@
-const API_URL = "https://localhost:5000";
+const API_URL = "http://localhost:5000";
 
 export interface ICheckData {
     accountGuid: number;
@@ -25,15 +25,25 @@ export interface ICheckOperationAnswer {
     newLog: INewLog;
 }
 
+export interface ICheckHistoryItem {
+    accountId: number;
+    datetime: string;
+    balanceBeforeOperation: number;
+    balanceAfterOperation: number;
+    delta: number;
+}
+
+export type TCheckHistoryList = ICheckHistoryItem[]; 
+
 export const adminAuthentication = async (password: string) => {
-    const response = await fetch(`${API_URL}/admin/authenticate/password=${password}`, {
+    const response = await fetch(`${API_URL}/admin/authentication/${password}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
         throw new Error(`${response.status}, ${response.statusText}`);
     }
 
@@ -41,14 +51,14 @@ export const adminAuthentication = async (password: string) => {
 };
 
 export const adminCheckChoice = async (login: string) => {
-    const response = await fetch(`${API_URL}/admin/check/choice/login=${login}`, {
+    const response = await fetch(`${API_URL}/admin/check/choice/${login}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
         throw new Error(`${response.status}, ${response.statusText}`);
     }
 
@@ -56,14 +66,14 @@ export const adminCheckChoice = async (login: string) => {
 };
 
 export const userSignIn = async (login: string, password: string) => {
-    const response = await fetch(`${API_URL}/bankAccount/authentication/login=${login}&&password=${password}`, {
+    const response = await fetch(`${API_URL}/bankAccount/authentication/${login}/${password}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
         throw new Error(`${response.status}, ${response.statusText}`);
     }
 
@@ -71,14 +81,14 @@ export const userSignIn = async (login: string, password: string) => {
 };
 
 export const userSignUp = async (password: string) => {
-    const response = await fetch(`${API_URL}/bankAccount/identification/password=${password}`, {
-        method: "GET",
+    const response = await fetch(`${API_URL}/bankAccount/identification/${password}`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
         throw new Error(`${response.status}, ${response.statusText}`);
     }
 
@@ -86,14 +96,14 @@ export const userSignUp = async (password: string) => {
 };
 
 export const getCheckBalanceByNumber = async (checkNumber: string) => {
-    const response = await fetch(`${API_URL}/bankAccount/showBalance/id=${checkNumber}`, {
+    const response = await fetch(`${API_URL}/bankAccount/showBalance/${checkNumber}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
         throw new Error(`${response.status}, ${response.statusText}`);
     }
 
@@ -101,14 +111,14 @@ export const getCheckBalanceByNumber = async (checkNumber: string) => {
 }
 
 export const topUpCheckByNumber = async (checkNumber: string, amount: number) => {
-    const response = await fetch(`${API_URL}/bankAccount/addMoney/id=${checkNumber}&&delta=${amount}`, {
+    const response = await fetch(`${API_URL}/bankAccount/addMoney/${checkNumber}/${amount}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
         throw new Error(`${response.status}, ${response.statusText}`);
     }
 
@@ -116,14 +126,29 @@ export const topUpCheckByNumber = async (checkNumber: string, amount: number) =>
 }
 
 export const takeOffCheckByNumber = async (checkNumber: string, amount: number) => {
-    const response = await fetch(`${API_URL}/bankAccount/withdrawMoney/id=${checkNumber}&&delta=${amount}`, {
+    const response = await fetch(`${API_URL}/bankAccount/withdrawMoney/${checkNumber}/${amount}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
+        throw new Error(`${response.status}, ${response.statusText}`);
+    }
+
+    return await response.json();
+}
+
+export const getCheckHistoryByNumber = async (checkNumber: string) => {
+    const response = await fetch(`${API_URL}/bankAccount/showHistory/${checkNumber}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (!response.ok) {
         throw new Error(`${response.status}, ${response.statusText}`);
     }
 

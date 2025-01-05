@@ -1,6 +1,6 @@
 import { useState, type ReactElement } from "react";
 import CheckTool from "../CheckTool";
-import { ImagesSrcList, textMessagesList } from "../../utils/constants";
+import { buttonsText, ImagesSrcList, textMessagesList } from "../../utils/constants";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { ApplicationsPaths } from "../../router/routes";
@@ -26,12 +26,12 @@ const CheckTools = ({checkNumber}: ICheckToolsProps): ReactElement => {
                 <CheckTool
                     operation={toolTopUpActionNavigate}
                     iconSrc={ImagesSrcList.TOPUP}
-                    text={textMessagesList.TOPUPTOOL}
+                    text={buttonsText.TOPUP}
                 />
                 <CheckTool
                     operation={toolTakeOffActionNavigate}
                     iconSrc={ImagesSrcList.TAKEOFF}
-                    text={textMessagesList.TAKEOFFTOOL}
+                    text={buttonsText.TAKEOFF}
                 />
             </div>
         </div>

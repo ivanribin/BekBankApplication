@@ -9,7 +9,7 @@
     gap: 2vh;
     background-color: white;
     box-shadow: 0vw 0vw 50vw rgb(95, 95, 97), inset 0 0 3vh gray;
-    border-radius: 10%;
+    border-radius: 50px;
 }
 
 .check-image {
@@ -24,15 +24,3 @@
 .check-info-field-currency-container {
     color: gray;
 }
-
-/* .check-info-field-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 400px;
-    background-color: white;
-    border-radius: 10%;
-    z-index: 2;
-} */

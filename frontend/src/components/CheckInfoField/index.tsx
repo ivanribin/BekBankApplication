@@ -21,7 +21,7 @@ const CheckInfoField = ({
             </div>
             <CheckCart checkNumber={checkNumber} isNeedShowCheckNumber={true}/>
             <div className="check-amount-container">
-                {balance} {textMessagesList.CURRENCY}
+                {balance}
             </div>
             <div className="check-info-field-currency-container">
                 {textMessagesList.CURRENCYMESSAGE}

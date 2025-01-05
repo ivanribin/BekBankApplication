@@ -5,7 +5,7 @@
     align-items: center;
     position: relative;
     top: 0;
-    margin: 120px 0 50px 0;
+    margin: 80px 0 50px 0;
     transition: 1s;
 }
 
@@ -15,11 +15,14 @@
 }
 
 .bank-logo-container img{
-    width: 5vw;
+    width: 115px;
 }
 
 .bank-logo-name {
-    font-weight: bold;
-    font-size: 3vw;
+    font-weight: 400;
+    font-size: 80px;
+    letter-spacing: 3%;
+    text-align: justify;
     color: white;
+    user-select: none;
 }

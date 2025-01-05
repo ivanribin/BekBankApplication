@@ -1,6 +1,5 @@
 import { type ReactElement } from "react";
 import AdminAuthenticationPage from "../pages/AdminAuthentication";
-import CheckHistoryPage from "../pages/CheckHistory";
 import CheckPage from "../pages/Check";
 import ChoiceRolePage from "../pages/ChoiceRole";
 import AdminCheckChoicePage from "../pages/AdminCheckChoice";
@@ -14,7 +13,6 @@ import CheckTakeOffPage from "../pages/CheckTakeOff";
 export const enum ApplicationsPaths {
     CHOICEROLE = "/",
     ADMINAUTHENTICATION = "/admin/authentication",
-    CHECKHISTORY = "user/check/history",
     CHECKFULL = "/user/check/:checkNumber",
     CHECK = "/user/check",
     ADMINCHECKCHOICE = "/admin/check/choice",
@@ -42,11 +40,6 @@ const applicationRoutes: IApplicationRoute[] = [
         id: "adminAuthentication",
         path: ApplicationsPaths.ADMINAUTHENTICATION,
         element: <AdminAuthenticationPage />,
-    },
-    {
-        id: "checkHistory",
-        path: ApplicationsPaths.CHECKHISTORY,
-        element: <CheckHistoryPage />,
     },
     {
         id: "checkInfo",

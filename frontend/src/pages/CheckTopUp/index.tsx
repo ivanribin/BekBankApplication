@@ -1,15 +1,19 @@
 import { type ReactElement, useState, useEffect, ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { textMessagesList } from "../../utils/constants";
+import { buttonsText, textMessagesList } from "../../utils/constants";
 import { topUpCheckByNumber, ICheckOperationAnswer, getCheckBalanceByNumber } from "../../api";
 import CheckCart from "../../components/CheckCart";
 import BankLogo from "../../components/BankLogo";
-import "./style.css";
 import { ApplicationsPaths } from "../../router/routes";
+import { getLoginInFormattedForm } from "../../utils/constants";
+import "./style.css";
+import OperationIcon from "../../components/OperationIcon";
 
 const CheckTopUpPage = (): ReactElement => {
     const { checkNumber } = useParams();
+
+    const formattedCheckNumber: string = getLoginInFormattedForm(checkNumber);
 
     const navigate = useNavigate();
 
@@ -88,7 +92,7 @@ const CheckTopUpPage = (): ReactElement => {
     }
 
     if (areCheckBalanceLoading || areTopUpActionLoading) {
-        return <div>LOADING...</div>;
+        return <OperationIcon />;
     }
 
     if (loadBalanceError || topUpActionError) {
@@ -105,15 +109,14 @@ const CheckTopUpPage = (): ReactElement => {
                         <div className="top-up-check-title">
                             {textMessagesList.TOPUPCHECKTITLE}
                         </div>
-                        <div className="top-up-check-number">{checkNumber}</div>
+                        <div className="top-up-check-number">{formattedCheckNumber}</div>
                     </div>
                     <div className="top-up-check-info-second-part">
                         <div className="top-up-check-balance">
-                            {checkBalance}₽
+                            {checkBalance}
                         </div>
                         <div className="top-up-check-icon">
                             <CheckCart
-                                checkNumber={checkNumber}
                                 width={"200px"}
                                 height={"120px"}
                                 isNeedShowCheckNumber={false}
@@ -142,7 +145,7 @@ const CheckTopUpPage = (): ReactElement => {
             </div>
 
             <div className="top-up-action-button" onClick={topUpAction}>
-                {textMessagesList.TOPUPBUTTON}
+                {buttonsText.TOPUP}
             </div>
         </div>
     );

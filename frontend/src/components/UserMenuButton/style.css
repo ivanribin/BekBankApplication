@@ -2,12 +2,18 @@
     width: 300px;
     height: 150px;
     background-color: white;
-    border-radius: 20%;
+    padding: 30px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     user-select: none;
     transition: 1s;
+
+    font-weight: 400;
+    font-size: 80px;
+    letter-spacing: 3%;
+    text-align: justify;
 }
 
 .user-menu-button:hover {

@@ -1,15 +1,17 @@
 import { useState, type ReactElement } from "react";
 import BankLogo from "../../components/BankLogo";
-import { textMessagesList } from "../../utils/constants";
+import { buttonsText, textMessagesList } from "../../utils/constants";
 import { ICheckData, userSignUp } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { ApplicationsPaths } from "../../router/routes";
 import "./style.css";
 import UserForm from "../../components/UserForm";
+import OperationIcon from "../../components/OperationIcon";
 
 const UserSignUpPage = (): ReactElement => {
     const navigate = useNavigate();
 
+    const [areSignUp, setAreSignUp] = useState<boolean>(false);
     const [signUpStatus, setSignUpStatus] =
         useState<string>("sending");
     const [error, setError] = useState<Error | null>(null);
@@ -17,6 +19,7 @@ const UserSignUpPage = (): ReactElement => {
     const checkSignUp = async (currentPassword: string) => {
         try {
             setError(null);
+            setAreSignUp(true);
 
             const checkData: ICheckData = await userSignUp(currentPassword
             );
@@ -34,8 +37,14 @@ const UserSignUpPage = (): ReactElement => {
             }, 1000);
         } catch (error: any) {
             setError(error);
+        } finally {
+            setAreSignUp(false);
         }
     };
+
+    if (areSignUp) {
+        return <OperationIcon />;
+    }
 
     if (error) {
         return <div>{error.message}</div>;
@@ -46,7 +55,7 @@ const UserSignUpPage = (): ReactElement => {
             <BankLogo />
             <div className={`${signUpStatus}-user-sign-up-field`}>
                 <div className="sign-up-message">
-                    {textMessagesList.USERSIGNUP}
+                    {buttonsText.SIGNUP}
                 </div>
 
                 <UserForm
@@ -55,6 +64,7 @@ const UserSignUpPage = (): ReactElement => {
                     sendPasswordFunction={checkSignUp}
                     isNeedRepeatPasswordField={true}
                     repeatPasswordPlaceholder={textMessagesList.REPEATPASSWORDPLACEHOLDER}
+                    buttonText={buttonsText.SIGNUP}
                 />
             </div>
         </div>

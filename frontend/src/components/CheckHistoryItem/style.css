@@ -1,0 +1,37 @@
+.check-history-item-container {
+    position: relative;
+    width: 600px;
+    padding: 10px 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 2vh;
+    box-shadow: 0vw 0vw 50vw rgb(95, 95, 97), inset 0 0 3vh gray;
+    border-radius: 30px;
+}
+
+.check-history-item-container:hover {
+    cursor: pointer;
+}
+
+.check-history-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-left: 20px;
+    font-weight: 400;
+}
+
+.check-history-item-name {
+    font-size: 2vw;
+}
+
+.check-history-item-delta {
+    font-size: 2vw;
+    position: absolute;
+    right: 20px;
+}
+

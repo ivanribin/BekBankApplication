@@ -1,5 +1,4 @@
-export const enum TextLines {
-    SHOWPASSWORD = "Показать пароль",
-    HIDEPASSWORD = "Скрыть пароль",
-    LOGINBUTTON = "Войти"
+export const enum userFormTextLines {
+    SHOWPASSWORD = "Show password",
+    HIDEPASSWORD = "Hide password",
 }

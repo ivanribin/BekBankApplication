@@ -3,4 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, #8B7ECE, #75D577);
+
+}
+
+.choice-role-page-header {
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
+    opacity: 0.8;
+    color: #FFFFFFCC;
+    user-select: none;
+    margin-bottom: 50px;
 }

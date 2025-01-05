@@ -9,20 +9,22 @@
 .login-input-field {
     font-size: 2vw;
     border: none;
+    outline: none;
+    text-align: center;
 }
 
 .password-input-field {
     font-size: 2vw;
-
     border: none;
-
+    outline: none;
+    text-align: center;
 }
 
 .repeat-password-input-field {
     font-size: 2vw;
-
     border: none;
-
+    outline: none;
+    text-align: center;
 }
 
 .show-password-button {
@@ -36,20 +38,31 @@
     font-weight: 800;
 }
 
-.sending-button {
+.active-sending-button {
     padding: 10px 30px;
     border: 3px solid black;
     background-color: white;
     font-size: 3vw;
-    border-radius: 10%;
+    border-radius: 20px;
     user-select: none;
     transition: 1s;
 }
 
-.sending-button:hover {
+.active-sending-button:hover {
     cursor: pointer;
     transform: scale(1.1);
     background-color: rgb(39, 154, 118);
+}
+
+.inactive-sending-button {
+    padding: 10px 30px;
+    border: 3px solid rgb(131, 125, 125);
+    background-color: white;
+    font-size: 3vw;
+    border-radius: 20px;
+    user-select: none;
+    transition: 1s;
+    color: gray;
 }
 
 

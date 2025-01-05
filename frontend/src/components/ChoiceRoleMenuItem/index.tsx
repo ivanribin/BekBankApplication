@@ -6,11 +6,10 @@ export interface IChoiceRoleMenuItemProps {
     navigationLink: string;
     iconSrc: string;
     text: string;
-    width?: string;
-    height?: string;
+    textColor: string;
 }
 
-const ChoiceRoleMenuItem = ({navigationLink, iconSrc, text, width, height}: IChoiceRoleMenuItemProps): ReactElement => {
+const ChoiceRoleMenuItem = ({navigationLink, iconSrc, text, textColor}: IChoiceRoleMenuItemProps): ReactElement => {
     const navigate = useNavigate();
 
     const choiceRoleNavigate = (navigationLink: string) => {
@@ -19,7 +18,7 @@ const ChoiceRoleMenuItem = ({navigationLink, iconSrc, text, width, height}: ICho
     }
 
     return (
-        <div className="choice-role-menu-item-container" style={{width: width, height: height}} onClick={() => choiceRoleNavigate(navigationLink)}>
+        <div className="choice-role-menu-item-container" style={{color: textColor}} onClick={() => choiceRoleNavigate(navigationLink)}>
             <img src={iconSrc} alt="navigate image"/>
             {text}
         </div>

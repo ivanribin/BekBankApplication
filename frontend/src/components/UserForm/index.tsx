@@ -1,6 +1,17 @@
 import { ReactElement, useState, ChangeEvent } from "react";
-import { TextLines } from "./meta";
+import { userFormTextLines } from "./meta";
+import { NUMBERS_COUNT_IN_ONE_PATH_OF_LOGIN } from "../../utils/constants";
 import "./style.css";
+
+const getCountHyphens = (input: string): number => {
+    const loginParts = input.split("-");
+    
+    return loginParts.length - 1;
+}
+
+const clearLoginToCorrectForm = (login: string): string => {
+    return login.replace(/[^0-9-]/g, '');
+}
 
 export interface IUserFormProps {
     isNeedPasswordField?: boolean;
@@ -17,6 +28,7 @@ export interface IUserFormProps {
     ) => Promise<void>;
     isNeedRepeatPasswordField?: boolean;
     repeatPasswordPlaceholder?: string;
+    buttonText: string;
 }
 
 const UserForm = ({
@@ -29,14 +41,30 @@ const UserForm = ({
     sendLoginAndPasswordFunction = async () => Promise.resolve(),
     isNeedRepeatPasswordField = false,
     repeatPasswordPlaceholder = "",
+    buttonText,
 }: IUserFormProps): ReactElement => {
     const [login, setLogin] = useState<string>("");
+    const [formattedLogin, setFormattedLogin] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [repeatPassword, setRepeatPassword] = useState<string>("");
     const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [sendingButtonStyle, setSendingButtonStyle] = useState<string>("active-sending-button");
+
+    const MAX_FORMATTED_LOGIN_LENGTH: number = 14;
 
     const handleLoginChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setLogin(event.target.value);
+        let currentFormattedLogin = clearLoginToCorrectForm(event.target.value);
+
+        const hyphenCount = getCountHyphens(currentFormattedLogin);
+
+        if (currentFormattedLogin.length / (hyphenCount + 1) === NUMBERS_COUNT_IN_ONE_PATH_OF_LOGIN + 1) {
+            const lastElement = currentFormattedLogin[currentFormattedLogin.length - 1];
+
+            currentFormattedLogin = currentFormattedLogin.slice(0, currentFormattedLogin.length - 1) + "-" + lastElement;
+        }
+
+        setFormattedLogin(currentFormattedLogin);
+        setLogin(event.target.value.replace(/-/g, ''));
     };
 
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -89,7 +117,8 @@ const UserForm = ({
                     className="login-input-field"
                     type="text"
                     id="login"
-                    value={login}
+                    value={formattedLogin}
+                    maxLength={MAX_FORMATTED_LOGIN_LENGTH}
                     onChange={handleLoginChange}
                     placeholder={loginPlaceholder}
                     required
@@ -127,15 +156,15 @@ const UserForm = ({
             )}
 
             <div className="show-password-button" onClick={toggleShowPassword}>
-                {showPassword ? TextLines.HIDEPASSWORD : TextLines.SHOWPASSWORD}
+                {showPassword ? userFormTextLines.HIDEPASSWORD : userFormTextLines.SHOWPASSWORD}
             </div>
 
-            <button
-                className="sending-button"
+            <div
+                className={sendingButtonStyle}
                 onClick={checkSendAvailable}
             >
-                {TextLines.LOGINBUTTON}
-            </button>
+                {buttonText}
+            </div>
         </div>
     );
 };

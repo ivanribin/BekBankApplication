@@ -1,16 +1,16 @@
 import { useState, type ReactElement } from "react";
-import { ImagesSrcList, textMessagesList } from "../../utils/constants";
+import { buttonsText, ImagesSrcList, textMessagesList } from "../../utils/constants";
 import "./style.css";
 
 export interface ICheckCartProps {
-    checkNumber: string;
+    checkNumber?: string;
     isNeedShowCheckNumber: boolean;
     width?: string;
     height?: string;
 }
 
 const CheckCart = ({
-    checkNumber,
+    checkNumber = "",
     isNeedShowCheckNumber,
     width,
     height,
@@ -47,7 +47,7 @@ const CheckCart = ({
                         className="show-all-number-button"
                         onClick={showAllCheckNumber}
                     >
-                        {textMessagesList.SHOWALLCHECKNUMBER}
+                        {buttonsText.SHOWALLCHECKNUMBER}
                     </div>
                 </div>
             ) : (

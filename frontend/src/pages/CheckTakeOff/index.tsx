@@ -1,15 +1,19 @@
 import { type ReactElement, useState, useEffect, ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { textMessagesList } from "../../utils/constants";
+import { buttonsText, textMessagesList } from "../../utils/constants";
 import { getCheckBalanceByNumber, takeOffCheckByNumber, ICheckOperationAnswer } from "../../api";
 import CheckCart from "../../components/CheckCart";
 import BankLogo from "../../components/BankLogo";
-import "./style.css";
 import { ApplicationsPaths } from "../../router/routes";
+import { getLoginInFormattedForm } from "../../utils/constants";
+import "./style.css";
+import OperationIcon from "../../components/OperationIcon";
 
 const CheckTakeOffPage = (): ReactElement => {
     const { checkNumber } = useParams();
+
+    const formattedCheckNumber: string = getLoginInFormattedForm(checkNumber);
 
     const navigate = useNavigate();
 
@@ -89,7 +93,7 @@ const CheckTakeOffPage = (): ReactElement => {
     }
 
     if (areCheckBalanceLoading || areTakeOffActionLoading) {
-        return <div>LOADING...</div>;
+        return <OperationIcon />;
     }
 
     if (loadBalanceError || takeOffActionError) {
@@ -106,15 +110,14 @@ const CheckTakeOffPage = (): ReactElement => {
                         <div className="take-off-check-title">
                             {textMessagesList.TAKEOFFCHECKTITLE}
                         </div>
-                        <div className="take-off-check-number">{checkNumber}</div>
+                        <div className="take-off-check-number">{formattedCheckNumber}</div>
                     </div>
                     <div className="take-off-check-info-second-part">
                         <div className="take-off-check-balance">
-                            {checkBalance}₽
+                            {checkBalance}
                         </div>
                         <div className="take-off-check-icon">
                             <CheckCart
-                                checkNumber={checkNumber}
                                 width={"200px"}
                                 height={"120px"}
                                 isNeedShowCheckNumber={false}
@@ -143,7 +146,7 @@ const CheckTakeOffPage = (): ReactElement => {
             </div>
 
             <div className="take-off-action-button" onClick={takeOffAction}>
-                {textMessagesList.TAKEOFFBUTTON}
+                {buttonsText.TAKEOFF}
             </div>
         </div>
     );
