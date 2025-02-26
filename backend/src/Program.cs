@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Src.ApplicationLaunchers;
-using Src.EntitiesDI;
-using Src.Infrastructure.DatabaseSettings;
+using Src.ApplicationLaunchers.ServiceCollection;
+using Src.Infrastructure.DatabaseManager;
 
 namespace Src;
 
@@ -12,14 +12,14 @@ public class Program
         var settings = new ServiceCollectionSettings();
         IServiceProvider provider = settings.Provider;
 
-        ApplicationChoosePage page = provider.GetRequiredService<ApplicationChoosePage>();
+        var page = new ApplicationChoosePage();
         string choice = page.Execute();
 
         settings.Setup(choice);
         provider = settings.Provider;
 
-        PostgresDatabaseMaker dbmaker = settings.Provider.GetRequiredService<PostgresDatabaseMaker>();
-        await dbmaker.MakeDatabase();
+        IDatabaseManager databaseManager = settings.Provider.GetRequiredService<IDatabaseManager>();
+        await databaseManager.DatabaseSetup();
 
         IApplicationLauncher launcher = provider.GetRequiredService<IApplicationLauncher>();
         await launcher.Launch(settings);

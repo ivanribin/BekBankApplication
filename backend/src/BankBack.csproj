@@ -3,7 +3,7 @@
     <PropertyGroup>
         <RootNamespace>Src</RootNamespace>
         <OutputType>Exe</OutputType>
-        <NoWarn>CA2007, CA2227, SA1116, IDE0008</NoWarn>
+        <NoWarn>CA1515, CA2007, CA2227, SA1116, IDE0008, NU1902, NU1903</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,6 +23,8 @@
 
     <ItemGroup>
       <Folder Include="obj\" />
+      <Folder Include="Presentation\" />
+      <Folder Include="WebAPI\" />
     </ItemGroup>
 
 </Project>
