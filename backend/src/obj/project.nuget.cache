@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6QHxc973L3Q=",
+  "dgSpecHash": "EaRVotPPePQ=",
   "success": true,
   "projectFilePath": "C:\\MyFiles\\Projects\\BekBankApplication\\backend\\Src\\BankBack.csproj",
   "expectedPackageFiles": [
@@ -175,12 +175,5 @@
     "C:\\Users\\Георгий\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Георгий\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\MyFiles\\Projects\\BekBankApplication\\backend\\Src\\obj\\project.nuget.cache : Found invalid data while decoding."
-    }
-  ]
+  "logs": []
 }

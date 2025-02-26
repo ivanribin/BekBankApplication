@@ -1,4 +1,4 @@
-using Src.EntitiesDI;
+using Src.ApplicationLaunchers.ServiceCollection;
 
 namespace Src.ApplicationLaunchers;
 
